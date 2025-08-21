@@ -1,6 +1,6 @@
-/* ---
+   /* ---
            Professional Portfolio Design for Md. Jahirul Islam
-           Designed by Gemini - v9.0 (Freelancing Section Added)
+           Designed by Gemini - v10.0 (Dark/Light Mode)
         --- */
 
         /* 1. VARIABLES & GENERAL STYLES
@@ -9,13 +9,33 @@
             --primary-color: #3498db;
             --accent-color: #64ffda;
             --bg-color: #0a192f;
+            --section-bg-color: transparent; /* Sections are transparent over the body bg */
             --section-overlay-color: rgba(10, 25, 47, 0.85);
+            --card-bg-color: rgba(255, 255, 255, 0.05);
+            --card-border-color: rgba(255, 255, 255, 0.1);
+            --header-bg-color: rgba(10, 25, 47, 0.85);
             --light-color: #f8f9fa;
             --text-color: #ccd6f6;
             --text-color-dark: #8892b0;
             --shadow-deep: 0 15px 50px rgba(0, 0, 0, 0.2);
             --border-radius: 8px;
         }
+
+        body.light-mode {
+            --primary-color: #0056b3;
+            --accent-color: #007bff;
+            --bg-color: #e9ecef; /* Light gray page background */
+            --section-bg-color: #ffffff; /* Sections are white cards */
+            --section-overlay-color: transparent; /* No overlay in light mode */
+            --card-bg-color: #f8f9fa;
+            --card-border-color: #dee2e6;
+            --header-bg-color: rgba(255, 255, 255, 0.85);
+            --light-color: #212529; /* Dark text */
+            --text-color: #495057;
+            --text-color-dark: #6c757d;
+            --shadow-deep: 0 15px 50px rgba(0, 0, 0, 0.1);
+        }
+
 
         * {
             margin: 0;
@@ -31,6 +51,7 @@
             background-color: var(--bg-color);
             overflow-x: hidden;
             cursor: none;
+            transition: background-color 0.3s ease;
         }
 
         .container {
@@ -71,6 +92,11 @@
             margin: 0 auto 40px auto;
             max-width: 1280px;
             padding: 80px 40px;
+            background-color: var(--section-bg-color);
+        }
+
+        body.light-mode section:not(.hero) {
+            background-image: none !important; /* Remove parallax images in light mode */
         }
 
         section:not(.hero)::before {
@@ -112,6 +138,10 @@
             transform: translateY(-2px);
         }
         
+        body.light-mode .btn:hover {
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+
         .btn.btn-primary {
             background-color: var(--accent-color);
             color: var(--bg-color);
@@ -154,7 +184,7 @@
 
         /* 2. HEADER & NAVIGATION */
         header {
-            background: rgba(10, 25, 47, 0.85);
+            background: var(--header-bg-color);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 1rem 0;
@@ -163,15 +193,28 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: background-color 0.3s ease;
+        }
+        body.light-mode header {
+            border-bottom: 1px solid #dee2e6;
         }
         nav { display: flex; justify-content: space-between; align-items: center; }
         nav .logo { color: var(--accent-color); font-size: 1.8rem; font-weight: 700; }
-        nav ul { list-style: none; display: flex; }
+        nav ul { list-style: none; display: flex; align-items: center; }
         nav ul li { margin-left: 30px; }
         nav ul li a { color: var(--light-color); text-decoration: none; font-weight: 500; position: relative; padding: 5px 0; transition: color 0.3s ease; }
         nav ul li a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent-color); transition: width 0.3s ease; }
         nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
         nav ul li a.active { color: var(--accent-color); }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--light-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 20px;
+        }
 
         /* 3. HERO SECTION */
         .hero {
@@ -254,7 +297,7 @@
             height: 22px;
             border-radius: 50%;
             background-color: var(--accent-color);
-            border: 4px solid var(--bg-color);
+            border: 4px solid var(--section-bg-color);
         }
         .timeline-content h3 {
             font-size: 1.5rem;
@@ -293,6 +336,7 @@
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
         .skill-bar h3 { color: var(--text-color); font-size: 1rem; margin-bottom: 8px; font-weight: 500; }
         .bar-container { background-color: rgba(255, 255, 255, 0.1); width: 100%; border-radius: 5px; overflow: hidden; }
+        body.light-mode .bar-container { background-color: #e9ecef; }
         .bar { background-color: var(--accent-color); height: 10px; width: 0; border-radius: 5px; transition: width 1.5s ease-out; }
 
         /* Workflow Section */
@@ -302,8 +346,8 @@
         
         /* Cards */
         .card, .testimonial-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg-color);
+            border: 1px solid var(--card-border-color);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             transform-style: preserve-3d;
@@ -327,11 +371,11 @@
         }
         .portfolio-item {
             border-radius: var(--border-radius); overflow: hidden; position: relative; cursor: pointer;
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg-color); border: 1px solid var(--card-border-color);
             backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
             transform-style: preserve-3d; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .portfolio-item.featured { grid-column: span 2; } /* Featured item spans two columns */
+        .portfolio-item.featured { grid-column: span 2; }
         .portfolio-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
         .portfolio-item:hover img { transform: scale(1.05); }
         .portfolio-item .overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); padding: 40px 20px 20px; color: var(--light-color); opacity: 0; transition: opacity 0.4s ease; }
@@ -432,12 +476,13 @@
         .contact-form { max-width: 700px; margin: 0 auto; text-align: left; }
         .form-group { margin-bottom: 20px; }
         .form-group input, .form-group textarea {
-            background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--card-bg-color); border: 1px solid var(--card-border-color);
             color: var(--light-color); width: 100%; padding: 15px; border-radius: var(--border-radius);
             font-family: 'Poppins', sans-serif; font-size: 1rem;
         }
         .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-color-dark); }
         .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.1); outline: none; }
+        body.light-mode .form-group input:focus, body.light-mode .form-group textarea:focus { box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1); }
         .form-group textarea { resize: vertical; min-height: 150px; }
         .form-submit-btn { text-align: center; }
 
