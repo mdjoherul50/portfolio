@@ -1,6 +1,6 @@
-   /* ---
+/* ---
            Professional Portfolio Design for Md. Jahirul Islam
-           Designed by Gemini - v6.0 (Modern Sections)
+           Designed by Gemini - v9.0 (Freelancing Section Added)
         --- */
 
         /* 1. VARIABLES & GENERAL STYLES
@@ -84,10 +84,13 @@
         }
 
         #about { background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop'); }
+        #experience { background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1974&auto=format&fit=crop'); }
         #skills { background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop'); }
         #workflow { background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop'); }
         #services { background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'); }
         #portfolio { background-image: url('https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=2072&auto=format&fit=crop'); }
+        #freelancing { background-image: url('https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=2070&auto=format&fit=crop'); }
+        #gallery { background-image: url('https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=2070&auto=format&fit=crop'); }
         #testimonials { background-image: url('https://images.unsplash.com/photo-1587560699334-cc4263443cf1?q=80&w=2070&auto=format&fit=crop'); }
         #contact { background-image: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop'); }
 
@@ -107,6 +110,20 @@
         .btn:hover {
             background-color: rgba(100, 255, 218, 0.1);
             transform: translateY(-2px);
+        }
+        
+        .btn.btn-primary {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .btn.btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+
+        .btn.btn-secondary {
+            margin-left: 15px;
         }
         
         .section-subtitle {
@@ -164,6 +181,23 @@
             justify-content: center;
             text-align: center;
             padding-top: 80px;
+            background-image: url('https://scontent.fdac107-1.fna.fbcdn.net/v/t39.30808-6/461804774_945398544301135_1269559797986295193_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=WfmLCkl9smYQ7kNvwFnQJfD&_nc_oc=AdkQOz03oD5MKga57rKMvUL7c-fSsk_CmyZ6_gntJosFcFymF24g4BuywTptrwMqdOk&_nc_zt=23&_nc_ht=scontent.fdac107-1.fna&_nc_gid=w26yJYpcdfCSQ_Ml9DaOcg&oh=00_AfW6kFhDNXcLKu5JAHb0-soxXi6layjFqdlWupLOF64xDQ&oe=68AB5EA0');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.7);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         .hero-text { max-width: 800px; }
         .hero .greeting { color: var(--accent-color); }
@@ -188,6 +222,71 @@
             object-fit: cover;
             border: 4px solid var(--accent-color);
             box-shadow: 0 0 25px rgba(100, 255, 218, 0.2);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto 0;
+            padding: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            height: 100%;
+            width: 2px;
+            background: var(--accent-color);
+            opacity: 0.3;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding-left: 40px;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 4px solid var(--bg-color);
+        }
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+        .timeline-content .company {
+            font-weight: 500;
+            color: var(--light-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .timeline-content .date {
+            font-size: 0.9rem;
+            color: var(--text-color-dark);
+            display: block;
+            margin-bottom: 15px;
+        }
+        .timeline-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .timeline-content ul li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .timeline-content ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
         }
 
         /* Skills Section */
@@ -215,9 +314,10 @@
         .card i { color: var(--accent-color); font-size: 2.8rem; margin-bottom: 20px; }
         .card h3, .workflow-step h3 { font-size: 1.25rem; margin-bottom: 10px; }
         .testimonial-card .author { color: var(--accent-color); }
-        .service-cards, .testimonial-cards { display: grid; gap: 30px; }
+        .service-cards, .testimonial-cards, .freelancing-cards { display: grid; gap: 30px; }
         .service-cards { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
         .testimonial-cards { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .freelancing-cards { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 
         /* Portfolio Section */
         .portfolio-grid {
@@ -238,6 +338,95 @@
         .portfolio-item:hover .overlay { opacity: 1; }
         .overlay h3 { color: var(--light-color); margin-bottom: 5px; }
         .overlay p { color: #ccc; margin-bottom: 0; }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-item::after {
+            content: '\f00e'; /* Font Awesome search-plus icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            color: white;
+            font-size: 2rem;
+            background: rgba(0,0,0,0.5);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .gallery-item:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .lightbox.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+            position: relative;
+        }
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .lightbox-close, .lightbox-prev, .lightbox-next {
+            position: absolute;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .lightbox-close { top: -40px; right: 0; }
+        .lightbox-prev { left: -50px; top: 50%; transform: translateY(-50%); }
+        .lightbox-next { right: -50px; top: 50%; transform: translateY(-50%); }
 
         /* Contact Section */
         .contact-form { max-width: 700px; margin: 0 auto; text-align: left; }
@@ -283,4 +472,5 @@
             section:not(.hero) { padding: 60px 20px; }
             .cursor-dot { display: none; }
             body { cursor: auto; }
+            .lightbox-prev, .lightbox-next { display: none; } /* Hide side arrows on small screens */
         }

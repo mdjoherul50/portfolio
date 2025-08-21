@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
             // --- Intersection Observer for scroll animations ---
             const animatedElements = document.querySelectorAll('[data-animation]');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // --- Typing Effect ---
             const typedTextSpan = document.querySelector("#typed-text");
             if (typedTextSpan) {
-                const textArray = ["Python & Django Developer","PHP & Laravel Developer", "Full Stack Engineer", "Freelancer"];
+                const textArray = ["PHP & Laravel Developer","Python & Django Developer", "Full Stack Engineer", "Freelancer"];
                 const typingDelay = 100;
                 const erasingDelay = 50;
                 const newTextDelay = 2000;
@@ -127,4 +127,61 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
 
+            // --- Lightbox Gallery Logic ---
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const lightboxPrev = document.getElementById('lightbox-prev');
+            const lightboxNext = document.getElementById('lightbox-next');
+            let currentIndex = 0;
+            const images = Array.from(galleryItems).map(item => item.querySelector('img').src);
+
+            function showLightbox(index) {
+                currentIndex = index;
+                lightboxImg.src = images[currentIndex];
+                lightbox.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideLightbox() {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                lightboxImg.src = images[currentIndex];
+            }
+
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                lightboxImg.src = images[currentIndex];
+            }
+
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    showLightbox(index);
+                });
+            });
+
+            lightboxClose.addEventListener('click', hideLightbox);
+            lightboxNext.addEventListener('click', showNextImage);
+            lightboxPrev.addEventListener('click', showPrevImage);
+            
+            // Close lightbox on outside click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    hideLightbox();
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('show')) {
+                    if (e.key === 'Escape') hideLightbox();
+                    if (e.key === 'ArrowRight') showNextImage();
+                    if (e.key === 'ArrowLeft') showPrevImage();
+                }
+            });
         });
